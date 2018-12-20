@@ -10,6 +10,7 @@ import Foundation
 import Moya
 
 enum MyService {
+    case login
     case getList
     case showUser(id: Int)
     case createUser(firstName: String, lastName: String)
@@ -25,6 +26,8 @@ extension MyService: TargetType {
     // 方法路径映射
     var path: String {
         switch self {
+        case .login:
+            return "/login"
         case .getList:
             return "/note/indexJson"
         case .showUser(let id), .updateUser(let id, _, _):
@@ -43,7 +46,7 @@ extension MyService: TargetType {
         switch self {
         case .getList, .showUser, .showAccounts:
             return .get
-        case .createUser, .updateUser:
+        case .login, .createUser, .updateUser:
             return .post
         }
     }

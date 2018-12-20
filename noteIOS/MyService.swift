@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum MyService {
-    case login
+    case login(username: String, password: String)
     case getList
     case showUser(id: Int)
     case createUser(firstName: String, lastName: String)
@@ -21,7 +21,7 @@ enum MyService {
 // MARK: - TargetType Protocol Implementation
 extension MyService: TargetType {
     // 服务器地址
-    var baseURL: URL { return URL(string: "http://localhost:8080")! }
+    var baseURL: URL { return URL(string: "http://10.4.7.184:8080")! }
     
     // 方法路径映射
     var path: String {
@@ -39,8 +39,6 @@ extension MyService: TargetType {
         }
     }
     
-    
-    
     // 请求方法，get 或者 post
     var method: Moya.Method {
         switch self {
@@ -54,6 +52,9 @@ extension MyService: TargetType {
     //一个请求任务事件
     var task: Task {
         switch self {
+            
+        case let .login(username, password): // Always send parameters as JSON in request body
+            return .requestParameters(parameters: ["username": username, "password": password], encoding: JSONEncoding.default)
         case .getList:
             return .requestParameters(parameters: ["pageNum": 1, "pageSize": 50], encoding: URLEncoding.queryString)
         case .showUser, .showAccounts: // Send no parameters
@@ -68,6 +69,8 @@ extension MyService: TargetType {
     //编码转义
     var sampleData: Data {
         switch self {
+        case .login(let username, let password):
+            return "Half measures are as bad as nothing at all.\(username),\(password)".utf8Encoded
         case .getList:
             return "Half measures are as bad as nothing at all.".utf8Encoded
         case .showUser(let id):

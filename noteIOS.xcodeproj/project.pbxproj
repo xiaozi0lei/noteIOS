@@ -14,6 +14,7 @@
 		697DF4F821C7A7FE00295CCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 697DF4F621C7A7FE00295CCE /* Main.storyboard */; };
 		697DF4FA21C7A80000295CCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 697DF4F921C7A80000295CCE /* Assets.xcassets */; };
 		697DF4FD21C7A80000295CCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 697DF4FB21C7A80000295CCE /* LaunchScreen.storyboard */; };
+		69B9E27521CB3109006DC69A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B9E27421CB3109006DC69A /* LoginViewController.swift */; };
 		740C2BF46DC9CBB1242D4FF6 /* Pods_noteIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 565DAE7CAB781A535034586C /* Pods_noteIOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		697DF4F921C7A80000295CCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		697DF4FC21C7A80000295CCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		697DF4FE21C7A80000295CCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69B9E27421CB3109006DC69A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		ED7A0220DAA3C2F4FB470234 /* Pods-noteIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-noteIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-noteIOS/Pods-noteIOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 				697DF4FE21C7A80000295CCE /* Info.plist */,
 				696DD86E21C8F53400168502 /* MyService.swift */,
 				696DD87021C90C5900168502 /* noteStruct.swift */,
+				69B9E27421CB3109006DC69A /* LoginViewController.swift */,
 			);
 			path = noteIOS;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 				696DD86F21C8F53400168502 /* MyService.swift in Sources */,
 				697DF4F521C7A7FE00295CCE /* ViewController.swift in Sources */,
 				696DD87121C90C5900168502 /* noteStruct.swift in Sources */,
+				69B9E27521CB3109006DC69A /* LoginViewController.swift in Sources */,
 				697DF4F321C7A7FE00295CCE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

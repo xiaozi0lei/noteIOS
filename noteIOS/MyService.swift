@@ -12,7 +12,7 @@ import Moya
 enum MyService {
     case login(username: String, password: String)
     case getList
-    case showUser(id: Int)
+    case view(id: Int)
     case createUser(firstName: String, lastName: String)
     case updateUser(id: Int, firstName: String, lastName: String)
     case showAccounts
@@ -21,7 +21,9 @@ enum MyService {
 // MARK: - TargetType Protocol Implementation
 extension MyService: TargetType {
     // 服务器地址
-    var baseURL: URL { return URL(string: "http://10.4.7.184:8080")! }
+//    var baseURL: URL { return URL(string: "http://10.4.7.184:8080")! }
+    var baseURL: URL { return URL(string: "http://sunguolei.cn")! }
+
     
     // 方法路径映射
     var path: String {
@@ -30,8 +32,8 @@ extension MyService: TargetType {
             return "/login"
         case .getList:
             return "/note/indexJson"
-        case .showUser(let id), .updateUser(let id, _, _):
-            return "/users/\(id)"
+        case .view(let id), .updateUser(let id, _, _):
+            return "/note/viewJson/\(id)"
         case .createUser(_, _):
             return "/users"
         case .showAccounts:
@@ -42,7 +44,7 @@ extension MyService: TargetType {
     // 请求方法，get 或者 post
     var method: Moya.Method {
         switch self {
-        case .getList, .showUser, .showAccounts:
+        case .getList, .view, .showAccounts:
             return .get
         case .login, .createUser, .updateUser:
             return .post
@@ -57,7 +59,9 @@ extension MyService: TargetType {
             return .requestParameters(parameters: ["username": username, "password": password], encoding: JSONEncoding.default)
         case .getList:
             return .requestParameters(parameters: ["pageNum": 1, "pageSize": 50], encoding: URLEncoding.queryString)
-        case .showUser, .showAccounts: // Send no parameters
+        case let .view(id):
+            return .requestParameters(parameters: ["id": id], encoding: URLEncoding.queryString)
+        case .showAccounts: // Send no parameters
             return .requestPlain
         case let .updateUser(_, firstName, lastName):  // Always sends parameters in URL, regardless of which HTTP method is used
             return .requestParameters(parameters: ["first_name": firstName, "last_name": lastName], encoding: URLEncoding.queryString)
@@ -73,7 +77,7 @@ extension MyService: TargetType {
             return "Half measures are as bad as nothing at all.\(username),\(password)".utf8Encoded
         case .getList:
             return "Half measures are as bad as nothing at all.".utf8Encoded
-        case .showUser(let id):
+        case .view(let id):
             return "{\"id\": \(id), \"first_name\": \"Harry\", \"last_name\": \"Potter\"}".utf8Encoded
         case .createUser(let firstName, let lastName):
             return "{\"id\": 100, \"first_name\": \"\(firstName)\", \"last_name\": \"\(lastName)\"}".utf8Encoded

@@ -17,7 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        
+        let storyboard = UIStoryboard(name:"Main",bundle:nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "login")
+        //        把初始视图控制器压入导航视图控制器
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        //        把根视图控制器设为导航视图控制器
+        self.window?.rootViewController = navigationController
+        //        渲染出页面
+        self.window?.makeKeyAndVisible()
         return true
     }
 
